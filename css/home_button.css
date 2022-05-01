@@ -11,3 +11,8 @@ a.home {
     background-color: #484848;
     padding: 8px 8px;
 }
+
+a.home:hover {
+    background-color: white;
+    color: black;
+}
