@@ -1,0 +1,40 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Nasalization';
+    font-size: 2rem;
+    color: white;
+    margin-top: 5vh;
+    margin-bottom: 20vh;
+}
+
+nav {
+    margin: auto;
+    width: 50%;
+}
+
+nav a {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    text-align: center;
+    text-decoration: none;
+
+    
+    font-family: 'Nasalization';
+    font-size: 2.5rem;
+
+    color: white;
+    background-color: #333334;
+
+    height: 10vh;
+    margin-bottom: 5vh;
+}
+
+nav a:hover {
+    background-color: #6d6d6d;
+}
