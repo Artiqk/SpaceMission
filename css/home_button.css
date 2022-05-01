@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    background-color: #151515;
+}
+
+a.home {
+    font-family: 'Nasalization';
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    background-color: #484848;
+    padding: 8px 8px;
+}

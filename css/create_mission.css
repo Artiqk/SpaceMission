@@ -1,5 +1,6 @@
-body {
-    background-color: #151515;
+a.home:hover {
+    background-color: white;
+    color: black;
 }
 
 h1 {
