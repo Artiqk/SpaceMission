@@ -9,9 +9,10 @@
 
     <body>
         <a href="{{ url_for('index') }}" class="home">Accueil</a>
+        
         <h1>Créer une mission</h1>
 
-        <form>
+        <form action="create_missions" method="POST">
             <div class="mission_creation">
                 <input name="mission_name" id="mission_name" placeholder="Nom de la mission">
                 <input name="mission_desc" id="mission_desc" placeholder="Description de la mission">
