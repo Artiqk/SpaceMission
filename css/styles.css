@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #151515;
 }
 
 h1 {
@@ -33,6 +33,8 @@ nav a {
 
     height: 10vh;
     margin-bottom: 5vh;
+
+    border-radius: 10px;
 }
 
 nav a:hover {
