@@ -13,6 +13,11 @@ app.config['MYSQL_DB'] = 'space_missions'
 
 mysql = MySQL(app)
 
+
+def htmlspecialchars (text):
+    return (text.replace("&", "&amp;").replace('"', "&quot;").replace("'", "&#039;").replace("<", "&lt;").replace(">", "&lt;"))
+
+
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -64,7 +69,8 @@ def display_users():
 @app.route('/create_missions', methods=['GET', 'POST'])
 def create_missions (): 
     post_data_name = ['mission_name', 'mission_desc']
-    sql_request = "INSERT INTO missions(mission_name, mission_description) VALUES('" + request.form[post_data_name[0]] + "','" + request.form[post_data_name[1]] + "');"
+
+    sql_request = "INSERT INTO missions(mission_name, mission_description) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "');"
     cursor = mysql.connection.cursor()
     cursor.execute(sql_request)
     mysql.connection.commit()
@@ -74,7 +80,7 @@ def create_missions ():
 @app.route('/create_users', methods=['GET', 'POST'])
 def create_users (): 
     post_data_name = ['first_name', 'last_name', 'age', 'mail']
-    sql_request = "INSERT INTO users(first_name, last_name, age, mail) VALUES('" + request.form[post_data_name[0]] + "','" + request.form[post_data_name[1]] + "'," + request.form[post_data_name[2]] + ",'" + request.form[post_data_name[3]] + "');"
+    sql_request = "INSERT INTO users(first_name, last_name, age, mail) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "'," + htmlspecialchars(request.form[post_data_name[2]]) + ",'" + htmlspecialchars(request.form[post_data_name[3]]) + "');"
     cursor = mysql.connection.cursor()
     cursor.execute(sql_request)
     mysql.connection.commit()
