@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/display_users.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fonts.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home_button.css') }}">
+    </head>
+
+    <body>
+        <a href="{{ url_for('index') }}" class="home">Accueil</a>
+        
+        <h1>Personnes diponibles pour les missions</h1>
+        <table>
+            <tr>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Age</th>
+                <th>Mail</th>
+            </tr>
+            {{data|safe}}
+        </table>
+    </body>
+</html>
