@@ -12,8 +12,8 @@
         <nav>
             <a href="{{ url_for('create_mission') }}">Créer une mission</a>
             <a href="{{ url_for('create_user') }}">Créer un utilisateur</a>
-            <a href="display_missions.html">Afficher les missions</a>
-            <a href="display_users.html">Afficher les personnes disponibles</a>
+            <a href="{{ url_for('display_missions') }}">Afficher les missions</a>
+            <a href="{{ url_for('display_users') }}">Afficher les personnes disponibles</a>
         </nav>
     </body>
 </html>
