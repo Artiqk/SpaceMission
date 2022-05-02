@@ -72,17 +72,32 @@ def create_missions ():
 
     sql_request = "INSERT INTO missions(mission_name, mission_description) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "');"
     cursor = mysql.connection.cursor()
-    cursor.execute(sql_request)
-    mysql.connection.commit()
-    cursor.close()  
-    return render_template('create_mission.html')
+    message = ""
+
+    try:
+        cursor.execute(sql_request)
+        mysql.connection.commit()
+        message = "<h2>La base de donnée a été mise à jour.</h2>"
+    except:
+        message = "<h3>La base de donnée n'a pas été mise à jour.</h3>"
+    finally:
+        cursor.close()
+    return render_template('create_mission.html', data=message)
 
 @app.route('/create_users', methods=['GET', 'POST'])
 def create_users (): 
     post_data_name = ['first_name', 'last_name', 'age', 'mail']
+
     sql_request = "INSERT INTO users(first_name, last_name, age, mail) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "'," + htmlspecialchars(request.form[post_data_name[2]]) + ",'" + htmlspecialchars(request.form[post_data_name[3]]) + "');"
     cursor = mysql.connection.cursor()
-    cursor.execute(sql_request)
-    mysql.connection.commit()
-    cursor.close()  
-    return render_template('create_user.html')
+    message = ""
+
+    try:
+        cursor.execute(sql_request)
+        mysql.connection.commit()
+        message = "<h2>La base de donnée a été mise à jour.</h2>"
+    except:
+        message = "<h3>La base de donnée n'a pas été mise à jour.</h3>"
+    finally: 
+        cursor.close()  
+    return render_template('create_user.html', data=message)

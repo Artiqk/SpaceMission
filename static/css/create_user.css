@@ -7,6 +7,20 @@ h1 {
     margin-bottom: 20vh;
 }
 
+h2 {
+    font-family: 'Nasalization';
+    text-align: center;
+    font-size: 1rem;
+    color: green;
+}
+
+h3 {
+    font-family: 'Nasalization';
+    text-align: center;
+    font-size: 1rem;
+    color: red;
+}
+
 .user_creation {
     margin: auto;
     width: 50%;
