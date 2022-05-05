@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 
 
+#-------- CONFIG DE LA BDD --------#
+
 app = Flask(__name__)
 
 # Configure la connexion à la base de donnée avec les identifiants + mot de passe
@@ -14,6 +16,9 @@ app.config['MYSQL_DB'] = 'space_missions'
 mysql = MySQL(app)
 
 
+#-------- Fonctions diverses --------#
+
+
 def htmlspecialchars (text): # Remplace les caractères spéciaux pour éviter les injections SQL
     return (text.replace("&", "&amp;").replace('"', "&quot;").replace("'", "&#039;").replace("<", "&lt;").replace(">", "&lt;"))
 
@@ -22,16 +27,17 @@ def getDataFromMySQLDB (request): # Initialise la connexion à la BDD et execute
     cursor = mysql.connection.cursor()
     sql_request = request
     cursor.execute(sql_request)
-    data = cursor.fetchall()
+    data = cursor.fetchall() # Permet de récuperer toutes les données acquises par la requête SQL
     return data
 
 
 def insertDataInMySQLDB (request):
     cursor = mysql.connection.cursor()
     message = ""
+
     try:
-        cursor.execute(request)
-        mysql.connection.commit()
+        cursor.execute(request) 
+        mysql.connection.commit() # Le commit permet de faire une modification permanente à la BDD
         message = "<h2>La base de donnée a été mise à jour.</h2>"
     except:
         message = "<h3>La base de donnée n'a pas été mise à jour.</h3>"
@@ -53,6 +59,9 @@ def prepareHTMLStringForTable (datas): # Prépare un code HTML pour afficher les
     return html_data
 
 
+#-------- Route pour accéder aux pages HTML --------#
+
+
 @app.route("/") # Retourne la page html (index)
 def index():
     return render_template('index.html')
@@ -68,7 +77,7 @@ def create_user ():
     return render_template('create_user.html')
 
 
-@app.route('/display_missions')
+@app.route('/display_missions') # Cette page récupère toutes les missions dans la BDD pour les afficher sur la page HTML
 def display_missions():
     missions = getDataFromMySQLDB("SELECT mission_name, mission_description FROM missions;")
 
@@ -78,7 +87,7 @@ def display_missions():
 
 
 @app.route('/display_users')
-def display_users():
+def display_users(): # Pareil que display_missions mais pour les utilisateurs
     users = getDataFromMySQLDB("SELECT first_name, last_name, age, mail FROM users;")
 
     html_data = prepareHTMLStringForTable(users)
@@ -87,7 +96,7 @@ def display_users():
 
 
 @app.route('/create_missions', methods=['GET', 'POST'])
-def create_missions (): 
+def create_missions ():  # Cette page permet de créer de nouvelles missions
     post_data_name = ['mission_name', 'mission_desc']
 
     message = insertDataInMySQLDB("INSERT INTO missions(mission_name, mission_description) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "');")
@@ -96,7 +105,7 @@ def create_missions ():
     
 
 @app.route('/create_users', methods=['GET', 'POST'])
-def create_users (): 
+def create_users (): # Cette page permet de créer de nouveaux utilisateurs 
     post_data_name = ['first_name', 'last_name', 'age', 'mail']
 
     message = insertDataInMySQLDB("INSERT INTO users(first_name, last_name, age, mail) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "'," + htmlspecialchars(request.form[post_data_name[2]]) + ",'" + htmlspecialchars(request.form[post_data_name[3]]) + "');")
