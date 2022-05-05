@@ -9,7 +9,10 @@ h1 {
 
 table {
     font-family: 'Nasalization';
-    width: 100%;
+    width: 80%;
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     border-collapse: collapse;
     color: white;
 }

@@ -4,12 +4,14 @@ h1 {
     font-size: 2rem;
     color: white;
     margin-top: 5vh;
-    margin-bottom: 20vh;
 }
 
 table {
     font-family: 'Nasalization';
-    width: 100%;
+    width: 80%;
+    margin: auto;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     border-collapse: collapse;
     color: white;
 }
