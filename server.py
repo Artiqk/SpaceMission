@@ -57,13 +57,16 @@ def prepareHTMLStringForTable (datas): # Prépare un code HTML pour afficher les
 def index():
     return render_template('index.html')
 
+
 @app.route('/create_mission')
 def create_mission ():
     return render_template('create_mission.html')
 
+
 @app.route('/create_user')
 def create_user ():
     return render_template('create_user.html')
+
 
 @app.route('/display_missions')
 def display_missions():
@@ -73,6 +76,7 @@ def display_missions():
 
     return render_template('display_missions.html', data=html_data)
 
+
 @app.route('/display_users')
 def display_users():
     users = getDataFromMySQLDB("SELECT first_name, last_name, age, mail FROM users;")
@@ -81,6 +85,7 @@ def display_users():
 
     return render_template('display_users.html', data=html_data)
 
+
 @app.route('/create_missions', methods=['GET', 'POST'])
 def create_missions (): 
     post_data_name = ['mission_name', 'mission_desc']
@@ -88,6 +93,7 @@ def create_missions ():
     message = insertDataInMySQLDB("INSERT INTO missions(mission_name, mission_description) VALUES('" + htmlspecialchars(request.form[post_data_name[0]]) + "','" + htmlspecialchars(request.form[post_data_name[1]]) + "');")
 
     return render_template('create_mission.html', data=message)
+    
 
 @app.route('/create_users', methods=['GET', 'POST'])
 def create_users (): 
