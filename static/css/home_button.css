@@ -4,6 +4,9 @@ body {
 }
 
 a.home {
+    position: fixed;
+    top: 0;
+    left: 0;
     font-family: 'Nasalization';
     font-size: 1.5rem;
     color: white;
